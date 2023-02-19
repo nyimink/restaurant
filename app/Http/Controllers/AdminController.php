@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chef;
 use App\Models\Food;
 use App\Models\Reservation;
 use App\Models\User;
@@ -92,6 +93,72 @@ class AdminController extends Controller
         return redirect('/foodmenu');
     }
     //end foodmenu
+
+    //start chef
+    public function chef()
+    {
+        $data = Chef::all();
+        return view('admin.adminchef', compact("data"));
+    }
+
+    public function chefAdd()
+    {
+        return view('admin.adminchefadd');
+    }
+
+    public function chefCreate(Request $request)
+    {
+        $data = new Chef;
+
+        $image = $request->image;
+
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('chefimage', $imageName);
+
+        $data->image = $imageName;
+
+        $data->name = $request->name;
+        $data->speciality = $request->speciality;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->save();
+        return redirect('/chefs');
+    }
+
+    public function chefEdit($id)
+    {
+        $data = Chef::find($id);
+
+        return view('admin.adminchefedit', compact('data'));
+    }
+
+    public function chefUpdate($id, Request $request)
+    {
+        $data = Chef::find($id);
+
+        $image = $request->image;
+
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('chefimage', $imageName);
+
+        $data->image = $imageName;
+
+        $data->name = $request->name;
+        $data->speciality = $request->speciality;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->save();
+        return redirect('/chefs');
+    }
+
+    public function chefDelete($id)
+    {
+        $data = Chef::find($id);
+        $data->delete();
+
+        return back();
+    }
+    //end chef
 
     //start reservation
     public function reservation()

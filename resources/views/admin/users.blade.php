@@ -32,7 +32,7 @@
                             <td><a href="{{ url("/user/delete/$user->id") }}" style="text-decoration:none" class="btn btn-outline-danger">DELETE</a>
                             </td>
                         @else
-                            <td><a style="text-decoration:none" class="btn btn-outline-danger">NOT ALLOWED</a></td>
+                            <td><a style="text-decoration:none" class="disabled btn btn-outline-danger">NOT ALLOWED</a></td>
                         @endif
                     </tr>
                 @endforeach
