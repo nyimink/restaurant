@@ -29,7 +29,15 @@
                                                     class="fa fa-angle-down"></i></a></div>
                                     </div>
                                 </div>
+
                             </div>
+                            <form action="{{ url("/cart/add/$food->id") }}" method="post">
+                                @csrf
+                                <div class="input-group mt-2">
+                                    <input type="number" name="quantity" class="form-control" min="1" required>
+                                    <input type="submit" value="Cart" class="btn btn-outline-dark">
+                                </div>
+                            </form>
                         </div>
                     @endforeach
                 </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"]);
 
 Route::get('/redirects', [HomeController::class, "redirects"])->middleware('auth');
+
+Route::post('/cart/add/{id}', [HomeController::class, "cartAdd"]);
+Route::get('/cart/show/{id}', [HomeController::class, "cart"]);
+Route::get('/cart/delete/{id}', [HomeController::class, "cartDelete"]);
+
+Route::post('/order/confirm', [HomeController::class, "orderConfirm"]);
 
 Route::get('/users', [AdminController::class, "user"]);
 Route::get('/user/delete/{id}', [AdminController::class, "userDelete"]);

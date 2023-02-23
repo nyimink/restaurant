@@ -1,7 +1,10 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            {{-- <x-authentication-card-logo /> --}}
+            <a href="{{ url("/")}} " class="logo">
+                <img src="assets/images/klassy-logo.png" align="klassy cafe html template">
+            </a>
         </x-slot>
 
         <x-validation-errors class="mb-4" />
