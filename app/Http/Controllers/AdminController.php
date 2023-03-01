@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chef;
 use App\Models\Food;
+use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    //start user
+    //user start
     public function user()
     {
         $data = User::all();
@@ -29,9 +30,9 @@ class AdminController extends Controller
 
         return redirect('/users');
     }
-    //end user
+    //user end
 
-    //start foodmenu
+    //foodmenu start
     public function foodmenu()
     {
         $data = Food::all();
@@ -92,9 +93,9 @@ class AdminController extends Controller
 
         return redirect('/foodmenu');
     }
-    //end foodmenu
+    //foodmenu end
 
-    //start chef
+    //chef start
     public function chef()
     {
         $data = Chef::all();
@@ -158,9 +159,9 @@ class AdminController extends Controller
 
         return back();
     }
-    //end chef
+    //chef end
 
-    //start reservation
+    //reservation start
     public function reservation()
     {
         $data = Reservation::all();
@@ -183,5 +184,28 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
-    //end reservation
+    //reservation end
+
+    //order start
+    public function orders()
+    {
+        $data = Order::all();
+        return view('admin.orders', compact('data'));
+    }
+    //order end
+
+    //search start
+    public function search()
+    {
+        $search = request()->search;
+        $data = Order::where('name', 'Like', '%'.$search.'%')
+                ->orWhere('foodname', 'Like', '%'.$search.'%')
+                ->orWhere('address', 'Like', '%'.$search.'%')
+                ->orWhere('phone', 'Like', '%'.$search.'%')
+                ->get();
+        return view('admin.orders', [
+            "data" => $data
+        ]);
+    }
+    //search end
 }

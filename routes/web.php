@@ -26,6 +26,9 @@ Route::get('/cart/show/{id}', [HomeController::class, "cart"]);
 Route::get('/cart/delete/{id}', [HomeController::class, "cartDelete"]);
 
 Route::post('/order/confirm', [HomeController::class, "orderConfirm"]);
+Route::get('/orders', [AdminController::class, "orders"]);
+
+Route::get('/search', [AdminController::class, "search"]);
 
 Route::get('/users', [AdminController::class, "user"]);
 Route::get('/user/delete/{id}', [AdminController::class, "userDelete"]);

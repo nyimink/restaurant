@@ -165,7 +165,7 @@ https://templatemo.com/tm-558-klassy-cafe
                     @endforeach
 
                     @foreach ($data2 as $data2)
-                    <tr style="position:relative; top: -155px; right: -660px">
+                    <tr style="position:relative;">
                     <td><a href="{{ url("/cart/delete/$data2->id") }}" class="btn btn-outline-danger btn-sm">DELETE</a></td>
                     </tr>
                     @endforeach
