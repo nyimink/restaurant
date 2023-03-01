@@ -25,6 +25,7 @@
                     <th>Date</th>
                     <th>Time</th>
                     <th>Message</th>
+                    <th></th>
                 </tr>
 
                 @foreach ($data as $data)
@@ -36,6 +37,7 @@
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->time }}</td>
                         <td>{{ $data->message }}</td>
+                        <td><a href="{{ url("/reservation/delete/$data->id") }}" class="btn btn-outline-primary" onClick='return confirm("Are you sure to delete?")'>Served</a></td>
                     </tr>
                 @endforeach
 

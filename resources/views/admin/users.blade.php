@@ -29,7 +29,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         @if ($user->usertype == 0)
-                            <td><a href="{{ url("/user/delete/$user->id") }}" style="text-decoration:none" class="btn btn-outline-danger">DELETE</a>
+                            <td><a href="{{ url("/user/delete/$user->id") }}" style="text-decoration:none" class="btn btn-outline-danger" onClick='return confirm("Are you sure to delete this user?")'>DELETE</a>
                             </td>
                         @else
                             <td><a style="text-decoration:none" class="disabled btn btn-outline-danger">NOT ALLOWED</a></td>

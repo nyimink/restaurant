@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Chef;
 use App\Models\Food;
 use App\Models\Order;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +47,23 @@ class HomeController extends Controller
             $count = Cart::where('user_id', $user_id)->count();
             return view('home', compact('data', 'chef', 'count'));
         }
+    }
+
+    public function reservationCreate()
+    {
+        $data = new Reservation;
+        $data->user_id = auth()->user()->id;
+        $data->name = request()->name;
+        $data->email = request()->email;
+        $data->phone = request()->phone;
+        $data->guest = request()->guest;
+        $data->date = request()->date;
+        $data->time = request()->time;
+        $data->message = request()->message;
+
+        $data->save();
+
+        return redirect()->back();
     }
 
     public function cartAdd($id, Request $request)

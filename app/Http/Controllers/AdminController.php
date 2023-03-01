@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'isAdmin']);
     }
 
     //user start
@@ -168,21 +168,13 @@ class AdminController extends Controller
         return view('admin.adminreservation', compact("data"));
     }
 
-    public function reservationCreate()
+    public function reservationDelete($id)
     {
-        $data = new Reservation;
-        $data->user_id = auth()->user()->id;
-        $data->name = request()->name;
-        $data->email = request()->email;
-        $data->phone = request()->phone;
-        $data->guest = request()->guest;
-        $data->date = request()->date;
-        $data->time = request()->time;
-        $data->message = request()->message;
+        $data = Reservation::find($id);
 
-        $data->save();
+        $data->delete();
 
-        return redirect()->back();
+        return back();
     }
     //reservation end
 

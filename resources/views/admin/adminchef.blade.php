@@ -32,7 +32,7 @@
                       <p class="card-text"><small class="text-muted">{{ $chef->created_at->diffForHumans() }}</small></p>
                     <div class="d-grid d-md-flex justify-content-md-end">
                       <a href="{{ url("/chefs/edit/$chef->id") }}" class="me-md-2 btn btn-outline-light">Detail</a>
-                      <a href="{{ url("/chefs/delete/$chef->id") }}" class="me-md-2 btn btn-outline-danger">Delete</a>
+                      <a href="{{ url("/chefs/delete/$chef->id") }}" class="me-md-2 btn btn-outline-danger" onClick='return confirm("Are you sure to delete this chef?")'>Delete</a>
                     </div>
                     </div>
                   </div>

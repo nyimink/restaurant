@@ -48,8 +48,9 @@ Route::post('/chefs/edit/{id}', [AdminController::class, "chefUpdate"]);
 Route::get('/chefs/delete/{id}', [AdminController::class, "chefDelete"]);
 
 
-Route::post('/reservation', [AdminController::class, "reservationCreate"])->middleware('auth');
+Route::post('/reservation', [HomeController::class, "reservationCreate"])->middleware('auth');
 Route::get('/reservation', [AdminController::class, "reservation"]);
+Route::get('/reservation/delete/{id}', [AdminController::class, "reservationDelete"]);
 
 Route::middleware([
     'auth:sanctum',
